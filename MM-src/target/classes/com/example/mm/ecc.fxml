@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="669.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mm.ECC">
+   <children>
+      <VBox alignment="CENTER" layoutX="200.0" layoutY="93.0" prefHeight="400.0" prefWidth="600.0" spacing="10.0" stylesheets="@main_menu.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <HBox prefHeight="0.0" prefWidth="659.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#back" prefHeight="125.0" prefWidth="94.0" text="Back" />
+               </children>
+            </HBox>
+            <Label prefWidth="142.0" text="ECC" textAlignment="CENTER">
+               <font>
+                  <Font size="60.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="21.0" prefWidth="600.0" spacing="10.0">
+               <children>
+                  <TextField fx:id="a" promptText="a" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="b" promptText="b" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <TextField fx:id="p" promptText="p" />
+            <TextField fx:id="private_key" promptText="Private key" />
+            <Button fx:id="generate" mnemonicParsing="false" onAction="#generate" prefHeight="28.0" text="Generate" />
+            <TextField fx:id="generator" editable="false" promptText="Generator Point" />
+            <TextField fx:id="public_key" editable="false" promptText="Public key" />
+            <TextField fx:id="order" editable="false" promptText="Curve's order" />
+            <TextField fx:id="message" promptText="Message" />
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="602.0" spacing="10.0">
+               <children>
+                  <Button fx:id="encrypt" disable="true" mnemonicParsing="false" onAction="#encrypt" prefWidth="130.0" text="Encrypt" />
+                  <Button fx:id="sign" disable="true" mnemonicParsing="false" onAction="#sign" prefWidth="130.0" text="Sign" />
+               </children>
+            </HBox>
+            <TextField fx:id="result" promptText="Encrypt message or signature" />
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="602.0" spacing="10.0">
+               <children>
+                  <Button fx:id="decrypt" disable="true" mnemonicParsing="false" onAction="#decrypt" prefWidth="130.0" text="Decrypt" />
+                  <Button fx:id="verified" disable="true" mnemonicParsing="false" onAction="#verified" prefWidth="130.0" text="Verified" />
+               </children>
+            </HBox>
+            <TextField fx:id="result2" editable="false" promptText="Decrypt message or verify" />
+         </children>
+      </VBox>
+      <VBox fx:id="errorBox" alignment="CENTER" layoutX="404.0" layoutY="2.0" prefHeight="656.0" prefWidth="918.0" spacing="10.0" stylesheets="@main_menu.css" visible="false" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="200.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../asset/error.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="error" text="Label" textFill="#e40000">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#exit" text="OK" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
