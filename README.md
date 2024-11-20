@@ -29,7 +29,7 @@
    ```
    
 # Chạy project
-1. **Chạy API**
+1. **Chạy API**  
    Chuyển đến project API:
    ```bash
    cd MM/MM-API
@@ -38,8 +38,8 @@
    ```bash
    python main.py
    ```
-3. **Chạy app Java**
-   Chuyển đến file jar
+2. **Chạy App Java**  
+   Chuyển đến file jar:
    ```bash
    cd MM/MM-src/target
    ``` 
