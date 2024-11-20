@@ -193,5 +193,49 @@ def Elgama_verified(g, y, p, sign, message):
     v = v1 == v2
     return v
 
+from sympy import nextprime
+from Elgama import Elgama_gen, Elgama_encrypt, Elgama_decrypt, Elgama_sign, Elgama_verified
+
+def test_elgama():
+    # Bước 1: Sinh khóa ElGama
+    p = nextprime(1000)  # Số nguyên tố lớn hơn 1000
+    x = 123  # Khóa bí mật
+    print(f"Sử dụng p = {p}, x = {x}")
+    
+    g, private_key, public_key, p = Elgama_gen(x, p)
+    print(f"Phần tử sinh (g): {g}")
+    print(f"Khóa công khai (y): {public_key}")
+    print(f"Khóa bí mật (x): {private_key}")
+    
+    # Bước 2: Mã hóa tin nhắn
+    message = "HELLO"
+    print(f"Tin nhắn ban đầu: {message}")
+    
+    k, encrypted = Elgama_encrypt(g, public_key, p, message)
+    print(f"Mã hóa tin nhắn: k = {k}, mã hóa = {encrypted}")
+    
+    # Bước 3: Giải mã tin nhắn
+    decrypted = Elgama_decrypt(private_key, p, k, encrypted)
+    print(f"Tin nhắn sau khi giải mã: {decrypted}")
+    
+    # Bước 4: Ký số
+    signature = Elgama_sign(private_key, g, p, message)
+    print(f"Chữ ký số: {signature}")
+    
+    # Bước 5: Xác minh chữ ký
+    is_valid = Elgama_verified(g, public_key, p, signature, message)
+    print(f"Chữ ký hợp lệ: {is_valid}")
+    
+    # Kết quả cuối cùng
+    print("\nTất cả kiểm tra đã hoàn thành.")
+    if decrypted == message and is_valid:
+        print("ElGama hoạt động chính xác.")
+    else:
+        print("Có lỗi trong ElGama.")
+
+# Chạy kiểm tra
+if __name__ == "__main__":
+    test_elgama()
+
 
 

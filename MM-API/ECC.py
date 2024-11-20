@@ -360,3 +360,48 @@ def ECC_verified(a, b, p, q, G, public_key, message, signature):
         x, _ = P
         return r == x % q
 
+from sympy import nextprime
+from ECC import ECC_gen, ECC_encrypt, ECC_decrypt, ECC_sign, ECC_verified
+
+def test_ecc():
+    # Bước 1: Sinh khóa ECC
+    a = 1297  # Tham số a của đường cong
+    b = 2414  # Tham số b của đường cong
+    p = nextprime(2**15)  # Số nguyên tố p
+    private_key = 123456  # Khóa bí mật của người dùng
+    print(f"Sử dụng a = {a}, b = {b}, p = {p}, private_key = {private_key}")
+    
+    G, private_key, public_key, q, p = ECC_gen(a, b, p, private_key)
+    print(f"Phần tử sinh (G): {G}")
+    print(f"Khóa công khai (public_key): {public_key}")
+    print(f"Khóa bí mật (private_key): {private_key}")
+    
+    # Bước 2: Mã hóa tin nhắn
+    message = "HELLO"
+    print(f"Tin nhắn ban đầu: {message}")
+    
+    diff, k, encrypted = ECC_encrypt(a, b, p, G, public_key, message)
+    print(f"Mã hóa tin nhắn: diff = {diff}, k = {k}, mã hóa = {encrypted}")
+    
+    # Bước 3: Giải mã tin nhắn
+    decrypted = ECC_decrypt(a, b, p, k, diff, private_key, encrypted)
+    print(f"Tin nhắn sau khi giải mã: {decrypted}")
+    
+    # Bước 4: Ký số
+    signature = ECC_sign(a, b, p, q, G, private_key, message)
+    print(f"Chữ ký số: {signature}")
+    
+    # Bước 5: Xác minh chữ ký
+    is_valid = ECC_verified(a, b, p, q, G, public_key, message, signature)
+    print(f"Chữ ký hợp lệ: {is_valid}")
+    
+    # Kết quả cuối cùng
+    print("\nTất cả kiểm tra đã hoàn thành.")
+    if decrypted == message and is_valid:
+        print("ECC hoạt động chính xác.")
+    else:
+        print("Có lỗi trong ECC.")
+
+# Chạy kiểm tra
+if __name__ == "__main__":
+    test_ecc()

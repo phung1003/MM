@@ -150,18 +150,44 @@ def RSA_verified(e, n, k, sign, message):
     verified = pow(sign, e, n)+k*n
     return verified, message == verified
     
-# A = RSA(p=nextprime(2**2048), q=nextprime(p))
+def test_rsa():
+    # Bước 1: Sinh khóa RSA
+    p = nextprime(61)  # Số nguyên tố đầu tiên lớn hơn 61
+    q = nextprime(53)  # Số nguyên tố đầu tiên lớn hơn 53
+    print(f"Sử dụng p = {p}, q = {q}")
+    
+    e, d, n = RSA_gen(p, q)
+    print(f"Khóa công khai (e, n): ({e}, {n})")
+    print(f"Khóa bí mật (d): {d}")
+    
+    # Bước 2: Mã hóa tin nhắn
+    message = "HELLO"
+    print(f"Tin nhắn ban đầu: {message}")
+    
+    k, encrypted = RSA_encrypt(e, n, message)
+    print(f"Mã hóa tin nhắn: k = {k}, mã hóa = {encrypted}")
+    
+    # Bước 3: Giải mã tin nhắn
+    decrypted = RSA_decrypt(d, n, k, encrypted)
+    print(f"Tin nhắn sau khi giải mã: {decrypted}")
+    
+    # Bước 4: Ký số
+    k_sign, signature = RSA_sign(d, n, message)
+    print(f"Chữ ký số: k = {k_sign}, chữ ký = {signature}")
+    
+    # Bước 5: Xác minh chữ ký
+    verified_hash, is_valid = RSA_verified(e, n, k_sign, signature, message)
+    print(f"Hash từ chữ ký: {verified_hash}")
+    print(f"Chữ ký hợp lệ: {is_valid}")
+    
+    # Kết quả cuối cùng
+    print("\nTất cả kiểm tra đã hoàn thành.")
+    if decrypted == message and is_valid:
+        print("RSA hoạt động chính xác.")
+    else:
+        print("Có lỗi trong RSA.")
 
-# message = "ANHUNG"
-# encrypted_message = A.encrypt(message, A.e, A.n)
-# print("Encrypted message from A:", encrypted_message)
-# decrypted_message = A.decrypt(encrypted_message, A.d, A.n)
-# print("Decrypted message by A:", decrypted_message)
-
-# signature = A.sign(message)
-# print("A's signature on the message:", signature)
-# verified_hash = A.verify_signature(signature, A.e, A.n)
-# print("Verified hash:", verified_hash)
-
-# print(reverse_hashing(hashing("ABC")))    # AZ
+# Chạy kiểm tra
+if __name__ == "__main__":
+    test_rsa()
 
