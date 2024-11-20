@@ -2,8 +2,8 @@
 
 
 1. **Java 21**  
-   Download Java 21 from the [Oracle website](https://www.oracle.com/java/technologies/downloads/#java21).
-   Download [JavaFX 21](https://gluonhq.com/products/javafx/)
+   Download Java 21 tại [Oracle website](https://www.oracle.com/java/technologies/downloads/#java21).  
+   Download [JavaFX 21](https://gluonhq.com/products/javafx/).
 3. **Python**  
    Cài đặt Python:
    - **Mac**:  
