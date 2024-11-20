@@ -39,7 +39,7 @@
    ```bash
    python main.py
    ```
-3. **Chạy app Java
+3. **Chạy app Java**
    cd đến file jar
    ```bash
    cd MM/MM-src/target
