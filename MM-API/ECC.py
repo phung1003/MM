@@ -360,8 +360,6 @@ def ECC_verified(a, b, p, q, G, public_key, message, signature):
         x, _ = P
         return r == x % q
 
-from sympy import nextprime
-from ECC import ECC_gen, ECC_encrypt, ECC_decrypt, ECC_sign, ECC_verified
 
 def test_ecc():
     # Bước 1: Sinh khóa ECC

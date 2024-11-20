@@ -193,9 +193,6 @@ def Elgama_verified(g, y, p, sign, message):
     v = v1 == v2
     return v
 
-from sympy import nextprime
-from Elgama import Elgama_gen, Elgama_encrypt, Elgama_decrypt, Elgama_sign, Elgama_verified
-
 def test_elgama():
     # Bước 1: Sinh khóa ElGama
     p = nextprime(1000)  # Số nguyên tố lớn hơn 1000
