@@ -1,3 +1,27 @@
+# Tổng quan về project
+## Sử dụng 
+   - Project bao gồm 3 hệ mật RSA, Elgama và ECC Elgama. 
+   - Đối với mỗi hệ mật, nhập các thành phần khởi tạo cần thiết và bấm generate để tạo hệ mật:  
+	   + RSA: Nhập `p`, `q` là số nguyên tố
+	   + Elgama: Nhập `p` là số nguyên tố và `private key` là một số ngẫu nhiên nhỏ hơn `p`
+	   + ECC Elgama: Nhập `p` là số nguyên tố, `a` và `b` thoả mãn $4a^3 + 27b^2 \neq 0 \mod p$, `private key` là một số ngẫu nhiên nhỏ hơn `p`
+    
+
+ - Sau khi đã tạo xong hệ mật, nhập message là các kí tự thuộc bảng chữ cái latin, các chữ số, dấu cách, phẩy, chấm.     
+ - Có thể chạy trực tiếp code python ở các file RSA.py, Elgama.py, ECC.py. 
+  
+## Cải tiến so với code trước
+   - Thêm phần giao diện bằng javafx. 
+   - Có thể mã hoá các bản tin `m` lớn dù cho hệ mật nhỏ bằng cách tính modulo, cụ thể:
+     + Tính modulo của bản tin `m`:  
+        $a = m \mod p$  
+        $k = m \div p$  
+     + Mã hoá bản tin `a`:  
+       $y_a = encrypt(a)$
+     + Giải mã $y_a$, tính `m`:  
+        $m = kp+a$
+   
+
 # Project Setup
 
 
