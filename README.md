@@ -65,10 +65,10 @@
 2. **Chạy App Java**  
    Chuyển đến file jar:
    ```bash
-   cd MM/MM-src/target
+   cd MM/target
    ``` 
    Chạy file jar với module-path là đường dẫn đến folder lib của javafx
    ```bash
-   java --module-path <module-path> --add-modules javafx.controls,javafx.fxml -jar original-MM-1.0-SNAPSHOT.jar
+   java --module-path <module-path> --add-modules javafx.controls,javafx.fxml -jar MM-final.jar
    ```
 
